@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titan Engine</title>
+    <!-- <link rel='stylesheet' type="text/css" href="css/style.css"> -->
+    <link rel='stylesheet' type="text/css" href="css/style-mini.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=B612">
+
+    <!-- for flat icon  -->
+    <!-- <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css"> -->
+    <link rel="stylesheet" href="css/flaticon-mini.css">
+
+    <!-- CSS (load bootstrap from a CDN) -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous"> -->
+
+
+
+</head>
+
+<body>
+
+    <div class="box">
+        <div class="box_options">
+
+            <div class="filename1">code</div>
+            <div class="filename2">input</div>
+            <div class="filename3">output</div>
+            <!-- <div class="min_max_button">+</div> -->
+            <!-- <div class="about">?</div> -->
+            <span class="fi-rr-interrogation"></span>
+
+        </div>
+        <div class="box-area" id="box-area">
+
+
+            <div class="editor" id="editor"></div>
+            <div class="line1" id="line1"></div>
+            <div class="options_menu" id="options_menu">
+                <span class="hide_stdin">Hide stdin</span>
+
+                <select class="language" onchange="change_language(event)">
+                    <option value="" disabled selected hidden>Select Language</option>
+                    <option value="c">C</option>
+                    <option value="cpp">C++</option>
+                    <option value="python3">Python3</option>
+                    <option value="openJDK-8">Java-8</option>
+                    <option value="javascript">JavaScript</option>
+
+                </select>
+
+                <span class="load">Load</span>
+                <!-- <span class="setting">Setting</span> -->
+                <span class="fi-rr-disk"></span>
+                <span class="fi-rr-settings"></span>
+                <span class="run_button">RUN</span>
+            </div>
+
+            <div class="stdin_area" id="stdin_area"></div>
+            <div class="line2" id="line2"></div>
+
+            <div class="stdout_area">
+                <div class="right_topbar">
+                    <div style="color:white; margin-left: 10px;margin-right:10px;">Terminal</div>
+                    <div class="time"></div>
+                    <div class="language_info"></div>
+                    <div class="status">
+                        <div class="loader"></div>
+                        <div class="success"></div>
+                    </div>
+                </div>
+
+                <div class="output" contenteditable="true" spellcheck="false"></div>
+                <div class="right_bottombar"></div>
+
+
+            </div>
+        </div>
+        <div class="banner">Powered by &#127279;Jagannath University 2021</div>
+
+    </div>
+
+
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
+    </script> -->
+
+    <script src="//ajaxorg.github.io/ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//ajaxorg.github.io/ace-builds/src-min-noconflict/theme-dracula.js" type="text/javascript"charset="utf-8"></script>
+    <script src="//ajaxorg.github.io/ace-builds/src-min-noconflict/ext-language_tools.js" type="text/javascript"charset="utf-8"></script>
+    <!-- <script src="js/ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script> -->
+    <!-- <script src="js/ace-builds/src-min-noconflict/theme-dracula.js" type="text/javascript" charset="utf-8"></script> -->
+    <!-- <script src="js/ace-builds/src-min-noconflict/ext-language_tools.js" type="text/javascript" charset="utf-8"></script> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        ace.require("ace/ext/language_tools");
+
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/monokai");
+        editor.getSession().setMode("ace/mode/c_cpp");
+        editor.setShowPrintMargin(false);
+
+        editor.setOptions({
+            enableBasicAutocompletion: true,
+            enableSnippets: true,
+            enableLiveAutocompletion: true
+        });
+
+        document.getElementById('editor').style.fontSize = '16px';
+
+        // ---------------------------------------------------------------------------------------------------------------------------------
+        var editor2 = ace.edit("stdin_area");
+        editor2.setTheme("ace/theme/monokai");
+        editor2.getSession().setMode("ace/mode/c_cpp");
+        editor2.setShowPrintMargin(false);
+
+        document.getElementById('stdin_area').style.fontSize = '16px';
+        $(".status").hide();
+    </script>
+
+
+
+    <!-- for resizing the divs -->
+    <script src="js/line_resizer.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/run.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/button.js" type="text/javascript" charset="utf-8"></script>
+
+</body>
+
+</html>
